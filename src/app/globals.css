@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-background: #0A0B0F;
+  --color-foreground: #F8FAFC;
+
+  --color-card: #1E1B2E;
+  --color-card-foreground: #F8FAFC;
+
+  --color-popover: #1E1B2E;
+  --color-popover-foreground: #F8FAFC;
+
+  --color-primary: #8B5CF6;
+  --color-primary-foreground: #0A0B0F;
+
+  --color-secondary: #06B6D4;
+  --color-secondary-foreground: #0A0B0F;
+
+  --color-muted: #374151;
+  --color-muted-foreground: #94A3B8;
+
+  --color-accent: #EC4899;
+  --color-accent-foreground: #F8FAFC;
+
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #fafafa;
+
+  --color-border: #374151;
+  --color-input: #1E1B2E;
+  --color-ring: #8B5CF6;
+
+  --color-chart-1: #8B5CF6;
+  --color-chart-2: #06B6D4;
+  --color-chart-3: #EC4899;
+  --color-chart-4: #A855F7;
+  --color-chart-5: #0EA5E9;
+
+  --color-sidebar: #1E1B2E;
+  --color-sidebar-foreground: #F8FAFC;
+  --color-sidebar-primary: #8B5CF6;
+  --color-sidebar-primary-foreground: #F8FAFC;
+  --color-sidebar-accent: #374151;
+  --color-sidebar-accent-foreground: #F8FAFC;
+  --color-sidebar-border: #374151;
+  --color-sidebar-ring: #8B5CF6;
+
+  --color-surface: #1E1B2E;
+  --color-surface-foreground: #F8FAFC;
+  --color-neon-purple: #A855F7;
+  --color-neon-blue: #0EA5E9;
+  --color-hot-pink: #F472B6;
+  --color-space-black: #0A0B0F;
+
+  --font-display: "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --radius-lg: 0.5rem;
+  --radius-md: calc(0.5rem - 2px);
+  --radius-sm: calc(0.5rem - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border);
+  }
+}
+
+@layer base {
+  :root {
+    --background: #0A0B0F;
+    --foreground: #F8FAFC;
+    --card: #1E1B2E;
+    --card-foreground: #F8FAFC;
+    --popover: #1E1B2E;
+    --popover-foreground: #F8FAFC;
+    --primary: #8B5CF6;
+    --primary-foreground: #0A0B0F;
+    --secondary: #06B6D4;
+    --secondary-foreground: #0A0B0F;
+    --muted: #374151;
+    --muted-foreground: #94A3B8;
+    --accent: #EC4899;
+    --accent-foreground: #F8FAFC;
+    --destructive: #ef4444;
+    --destructive-foreground: #fafafa;
+    --border: #374151;
+    --input: #1E1B2E;
+    --ring: #8B5CF6;
+    --chart-1: #8B5CF6;
+    --chart-2: #06B6D4;
+    --chart-3: #EC4899;
+    --chart-4: #A855F7;
+    --chart-5: #0EA5E9;
+    --radius: 0.5rem;
+    --sidebar-background: #1E1B2E;
+    --sidebar-foreground: #F8FAFC;
+    --sidebar-primary: #8B5CF6;
+    --sidebar-primary-foreground: #F8FAFC;
+    --sidebar-accent: #374151;
+    --sidebar-accent-foreground: #F8FAFC;
+    --sidebar-border: #374151;
+    --sidebar-ring: #8B5CF6;
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    background-color: var(--color-space-black);
+    color: var(--color-foreground);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-body {
+    font-family: var(--font-body);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  .container {
+    margin-inline: auto;
+    padding-inline: 2rem;
+  }
+}
