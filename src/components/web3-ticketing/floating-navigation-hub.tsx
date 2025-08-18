@@ -27,7 +27,9 @@ import {
   Zap,
   MessageSquare,
   Star,
-  Globe
+  Globe,
+  Menu,
+  X
 } from 'lucide-react'
 
 interface FloatingNavigationHubProps {
@@ -67,6 +69,19 @@ export default function FloatingNavigationHub({
   const [theme, setTheme] = useState('arena')
   const [showNotifications, setShowNotifications] = useState(false)
   const [copiedAddress, setCopiedAddress] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Handle mobile detection
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Handle scroll visibility
   useEffect(() => {
@@ -114,6 +129,185 @@ export default function FloatingNavigationHub({
     { id: 2, type: 'event', message: 'Neon Festival tickets on sale', time: '1h ago', priority: 'medium' },
     { id: 3, type: 'reward', message: 'Daily XP bonus available', time: '3h ago', priority: 'low' }
   ]
+
+  // Mobile Bottom Navigation
+  if (isMobile) {
+    return (
+      <>
+        {/* Mobile Top Bar */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ 
+            opacity: isVisible ? 1 : 0.9, 
+            y: isVisible ? 0 : -10
+          }}
+          className="fixed top-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl border-b border-border/50 px-4 py-3"
+        >
+          <div className="flex items-center justify-between">
+            {/* User Avatar & Stats */}
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className={`absolute inset-0 bg-gradient-to-r ${getFactionColor(user.faction)} rounded-full p-0.5 animate-pulse`}>
+                  <div className="bg-surface rounded-full p-0.5">
+                    <Avatar className="w-8 h-8">
+                      <AvatarImage src={user.avatar} />
+                      <AvatarFallback className="bg-primary text-primary-foreground font-bold text-xs">
+                        {user.username.slice(0, 2).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                </div>
+                {user.isOnline && (
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border border-surface animate-pulse" />
+                )}
+              </div>
+              
+              <div className="min-w-0">
+                <h3 className="font-display font-bold text-foreground text-sm truncate">
+                  {user.username}
+                </h3>
+                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                  <Badge className="bg-primary hover:bg-primary flex items-center space-x-1 px-1.5 py-0.5 text-xs">
+                    <Crown className="w-2 h-2" />
+                    <span>{user.level}</span>
+                  </Badge>
+                  <span className="font-mono">{user.ethBalance.toFixed(3)} ETH</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-2">
+              {/* Notifications */}
+              <DropdownMenu open={showNotifications} onOpenChange={setShowNotifications}>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="relative p-2">
+                    <Bell className="w-4 h-4" />
+                    {notifications > 0 && (
+                      <Badge className="absolute -top-1 -right-1 min-w-4 h-4 p-0 flex items-center justify-center text-xs bg-accent hover:bg-accent">
+                        {notifications > 9 ? '9+' : notifications}
+                      </Badge>
+                    )}
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-72 bg-surface border-border/50 backdrop-blur-xl">
+                  <div className="p-3 border-b border-border/30">
+                    <h4 className="font-display font-semibold text-foreground text-sm">Notifications</h4>
+                  </div>
+                  {mockNotifications.map((notification) => (
+                    <DropdownMenuItem key={notification.id} className="p-3 cursor-pointer hover:bg-muted/30">
+                      <div className="flex items-start space-x-2 w-full">
+                        <div className={`w-2 h-2 rounded-full mt-1.5 ${
+                          notification.priority === 'high' ? 'bg-red-500 animate-pulse' :
+                          notification.priority === 'medium' ? 'bg-accent' : 'bg-muted-foreground'
+                        }`} />
+                        <div className="flex-1 min-w-0">
+                          <p className="text-xs text-foreground">{notification.message}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
+                        </div>
+                      </div>
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+
+              {/* Settings */}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" size="sm" className="p-2">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56 bg-surface border-border/50 backdrop-blur-xl">
+                  <DropdownMenuItem onClick={toggleSound} className="cursor-pointer hover:bg-muted/30">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center">
+                        {soundEnabled ? <Volume2 className="w-4 h-4 mr-3" /> : <VolumeX className="w-4 h-4 mr-3" />}
+                        <span className="text-sm">Sound</span>
+                      </div>
+                      <Badge variant={soundEnabled ? "default" : "secondary"} className="text-xs">
+                        {soundEnabled ? 'ON' : 'OFF'}
+                      </Badge>
+                    </div>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={onWalletToggle}
+                    className="cursor-pointer hover:bg-muted/30"
+                  >
+                    <div className="flex items-center justify-between w-full">
+                      <div className="flex items-center">
+                        <Wallet className="w-4 h-4 mr-3" />
+                        <span className="text-sm">Wallet</span>
+                      </div>
+                      {isWalletConnected ? (
+                        <div className="flex items-center gap-1">
+                          <Wifi className="w-3 h-3 text-green-500" />
+                          <span className="text-xs text-green-500">Connected</span>
+                        </div>
+                      ) : (
+                        <span className="text-xs text-red-500">Disconnected</span>
+                      )}
+                    </div>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Mobile Bottom Navigation */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="fixed bottom-0 left-0 right-0 z-50 bg-surface/95 backdrop-blur-xl border-t border-border/50 px-2 py-2 safe-area-pb"
+        >
+          <div className="grid grid-cols-6 gap-1">
+            {navigationItems.map((item) => (
+              <Button
+                key={item.id}
+                variant={currentSection === item.id ? "default" : "ghost"}
+                size="sm"
+                className={`p-2 h-auto flex flex-col items-center gap-1 text-xs relative overflow-hidden ${
+                  currentSection === item.id 
+                    ? 'bg-primary hover:bg-primary text-primary-foreground shadow-lg' 
+                    : 'hover:bg-primary/20'
+                }`}
+                onClick={() => onNavigate(item.id)}
+              >
+                {currentSection === item.id && (
+                  <motion.div
+                    layoutId="activeMobileSection"
+                    className="absolute inset-0 bg-primary rounded-md"
+                    initial={false}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
+                <item.icon className={`w-4 h-4 relative z-10 ${
+                  currentSection === item.id ? 'text-primary-foreground' : 'text-foreground'
+                }`} />
+                <span className={`text-xs font-medium relative z-10 leading-none ${
+                  currentSection === item.id ? 'text-primary-foreground' : 'text-muted-foreground'
+                }`}>
+                  {item.label}
+                </span>
+              </Button>
+            ))}
+          </div>
+        </motion.div>
+        
+        {/* Add padding to body content to account for fixed navigation */}
+        <style jsx global>{`
+          body {
+            padding-top: 60px;
+            padding-bottom: 80px;
+          }
+          .safe-area-pb {
+            padding-bottom: env(safe-area-inset-bottom);
+          }
+        `}</style>
+      </>
+    )
+  }
 
   return (
     <motion.div
