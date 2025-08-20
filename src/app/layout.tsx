@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import VisualEditsMessenger from "../visual-edits/VisualEditsMessenger";
 import ErrorReporter from "@/components/ErrorReporter";
@@ -7,8 +7,14 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "Web3 Ticketing Arena",
   description: "Transform your event tickets into collectible gaming NFTs. Battle, trade, and evolve your digital concert memories in the ultimate Web3 entertainment platform.",
-  viewport: "width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no",
 };
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
 
 export default function RootLayout({
   children,
