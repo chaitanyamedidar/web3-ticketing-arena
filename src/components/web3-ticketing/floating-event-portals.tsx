@@ -184,13 +184,13 @@ export default function FloatingEventPortals() {
         className="absolute inset-0 opacity-30"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-secondary/10" />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-primary/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
       </motion.div>
 
-      {/* Floating Particles */}
+      {/* Floating Particles - Responsive Amount */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(window.innerWidth < 768 ? 10 : 20)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-primary/30 rounded-full"
@@ -213,44 +213,49 @@ export default function FloatingEventPortals() {
       </div>
 
       <div ref={containerRef} className="relative z-10">
+<<<<<<< HEAD
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
           {/* Section Header */}
+=======
+        <div className="container mx-auto px-4 py-12 md:py-24">
+          {/* Section Header - Mobile Responsive */}
+>>>>>>> dc944863e57e637a7138746288c94e3d710d3419
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8 md:mb-16"
           >
-            <h2 className="text-5xl lg:text-7xl font-display font-bold mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-display font-bold mb-4 md:mb-6 bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent px-2">
               Choose Your Reality
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-body">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-xs sm:max-w-md md:max-w-2xl mx-auto font-body px-4">
               Step through dimensional portals to exclusive events across the metaverse. 
               Each ticket is a gateway to unforgettable experiences.
             </p>
           </motion.div>
 
-          {/* Controls Panel */}
+          {/* Controls Panel - Mobile First */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-6 mb-12 mx-auto max-w-4xl"
+            className="bg-card/50 backdrop-blur-xl border border-border/50 rounded-2xl p-4 md:p-6 mb-8 md:mb-12 mx-auto max-w-4xl"
           >
-            <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+            <div className="flex flex-col gap-4 md:gap-6">
               {/* Search */}
-              <div className="relative flex-1 max-w-md">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4 md:w-5 md:h-5" />
                 <Input
                   placeholder="Search portals..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 bg-surface/50 border-border/50 focus:border-primary/50 transition-colors"
+                  className="pl-10 md:pl-12 bg-surface/50 border-border/50 focus:border-primary/50 transition-colors text-sm md:text-base"
                 />
               </div>
 
-              {/* Filter Buttons */}
-              <div className="flex gap-2 flex-wrap">
+              {/* Filter Buttons - Mobile Responsive */}
+              <div className="grid grid-cols-2 sm:flex gap-2 justify-center">
                 {[
                   { key: "all", label: "All Portals" },
                   { key: "concert", label: "Concerts" },
@@ -261,11 +266,12 @@ export default function FloatingEventPortals() {
                     key={filterOption.key}
                     variant={filter === filterOption.key ? "default" : "outline"}
                     onClick={() => setFilter(filterOption.key as any)}
-                    className={`transition-all duration-300 ${
+                    className={`transition-all duration-300 text-xs sm:text-sm ${
                       filter === filterOption.key
                         ? "bg-primary text-primary-foreground shadow-lg shadow-primary/30"
                         : "bg-surface/50 hover:bg-primary/20 border-border/50"
                     }`}
+                    size="sm"
                   >
                     {filterOption.label}
                   </Button>
@@ -274,8 +280,13 @@ export default function FloatingEventPortals() {
             </div>
           </motion.div>
 
+<<<<<<< HEAD
           {/* Event Portal Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
+=======
+          {/* Event Portal Grid - Mobile Responsive */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 md:mb-16">
+>>>>>>> dc944863e57e637a7138746288c94e3d710d3419
             {filteredEvents.map((event, index) => {
               const rarity = rarityConfig[event.rarity]
               const RarityIcon = rarity.icon
@@ -304,23 +315,23 @@ export default function FloatingEventPortals() {
                   <Card className={`relative overflow-hidden bg-card/80 backdrop-blur-xl border-2 ${rarity.border} ${rarity.glow} hover:shadow-2xl transition-all duration-500 transform-gpu`}>
                     {/* Popular Badge */}
                     {event.isPopular && (
-                      <div className="absolute top-4 right-4 z-20">
-                        <Badge className="bg-accent text-accent-foreground animate-pulse">
+                      <div className="absolute top-3 md:top-4 right-3 md:right-4 z-20">
+                        <Badge className="bg-accent text-accent-foreground animate-pulse text-xs">
                           Hot 🔥
                         </Badge>
                       </div>
                     )}
 
                     {/* Rarity Badge */}
-                    <div className="absolute top-4 left-4 z-20">
-                      <Badge className={`${rarity.color} text-white flex items-center gap-1`}>
-                        <RarityIcon className="w-3 h-3" />
+                    <div className="absolute top-3 md:top-4 left-3 md:left-4 z-20">
+                      <Badge className={`${rarity.color} text-white flex items-center gap-1 text-xs`}>
+                        <RarityIcon className="w-2 h-2 md:w-3 md:h-3" />
                         {rarity.label}
                       </Badge>
                     </div>
 
-                    {/* Event Image */}
-                    <div className="relative h-64 overflow-hidden">
+                    {/* Event Image - Mobile Responsive Height */}
+                    <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                       <motion.img
                         src={event.image}
                         alt={event.title}
@@ -329,13 +340,13 @@ export default function FloatingEventPortals() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent opacity-60" />
                       
-                      {/* Particle Effects for Popular Events */}
+                      {/* Particle Effects for Popular Events - Reduced for mobile */}
                       {event.isPopular && (
                         <div className="absolute inset-0 overflow-hidden">
-                          {[...Array(8)].map((_, i) => (
+                          {[...Array(window.innerWidth < 768 ? 4 : 8)].map((_, i) => (
                             <motion.div
                               key={i}
-                              className="absolute w-2 h-2 bg-accent rounded-full"
+                              className="absolute w-1 h-1 md:w-2 md:h-2 bg-accent rounded-full"
                               animate={{
                                 y: [0, -100],
                                 x: [0, Math.random() * 50 - 25],
@@ -357,29 +368,29 @@ export default function FloatingEventPortals() {
                       )}
                     </div>
 
-                    {/* Event Details */}
-                    <div className="p-6 space-y-4">
-                      <h3 className="text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors">
+                    {/* Event Details - Mobile Responsive */}
+                    <div className="p-4 md:p-6 space-y-3 md:space-y-4">
+                      <h3 className="text-lg md:text-xl font-display font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
                         {event.title}
                       </h3>
 
                       {/* Date & Time */}
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock className="w-4 h-4" />
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
+                        <Clock className="w-3 h-3 md:w-4 md:h-4" />
                         <span className="font-mono">
                           {new Date(event.date).toLocaleDateString()} • {event.time}
                         </span>
                       </div>
 
-                      {/* Venue & Location */}
-                      <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                        <MapPin className="w-4 h-4" />
-                        <span>{event.venue} • {event.location}</span>
+                      {/* Venue & Location - Mobile Responsive */}
+                      <div className="flex items-center gap-2 text-xs md:text-sm text-muted-foreground">
+                        <MapPin className="w-3 h-3 md:w-4 md:h-4" />
+                        <span className="truncate">{event.venue} • {event.location}</span>
                       </div>
 
                       {/* Availability Progress */}
                       <div className="space-y-2">
-                        <div className="flex justify-between text-sm">
+                        <div className="flex justify-between text-xs md:text-sm">
                           <span className="text-muted-foreground">Availability</span>
                           <span className="font-mono text-foreground">
                             {event.availability}/{event.totalTickets}
@@ -395,21 +406,21 @@ export default function FloatingEventPortals() {
                         </div>
                       </div>
 
-                      {/* Pricing */}
-                      <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                      {/* Pricing - Mobile Responsive */}
+                      <div className="flex items-center justify-between pt-3 md:pt-4 border-t border-border/50">
                         <div className="space-y-1">
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-display font-bold text-foreground">
+                          <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                            <span className="text-base md:text-lg font-display font-bold text-foreground">
                               {event.price} ETH
                             </span>
-                            <span className="text-sm text-muted-foreground font-mono">
+                            <span className="text-xs md:text-sm text-muted-foreground font-mono">
                               (~${event.priceUSD})
                             </span>
                           </div>
                         </div>
                         <Button 
                           size="sm" 
-                          className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40"
+                          className="bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg shadow-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/40 text-xs md:text-sm px-3 md:px-4 py-2"
                         >
                           Enter Portal
                         </Button>
@@ -424,7 +435,7 @@ export default function FloatingEventPortals() {
             })}
           </div>
 
-          {/* Load More Button */}
+          {/* Load More Button - Mobile Responsive */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
@@ -433,7 +444,7 @@ export default function FloatingEventPortals() {
           >
             <Button 
               size="lg" 
-              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-accent/40 transition-all duration-500 px-8 py-6 text-lg font-display"
+              className="bg-gradient-to-r from-primary to-accent hover:from-primary/90 hover:to-accent/90 text-white shadow-xl shadow-primary/30 hover:shadow-2xl hover:shadow-accent/40 transition-all duration-500 px-6 py-4 md:px-8 md:py-6 text-base md:text-lg font-display w-full sm:w-auto"
             >
               <motion.span
                 animate={{ rotate: [0, 360] }}
