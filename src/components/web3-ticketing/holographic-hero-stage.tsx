@@ -94,13 +94,6 @@ export default function HolographicHeroStage() {
           </div>
 
           {/* Holographic Text Displays */}
-          <div className="absolute -top-32 left-1/2 transform -translate-x-1/2">
-            <Card className="bg-surface/20 backdrop-blur-md border border-primary/30 px-6 py-3">
-              <p className="text-primary font-display text-lg font-semibold tracking-wider animate-pulse">
-                WEB3 CONCERTS
-              </p>
-            </Card>
-          </div>
           <div className="absolute -bottom-20 right-0">
             <Card className="bg-surface/20 backdrop-blur-md border border-secondary/30 px-4 py-2">
               <p className="text-secondary font-display text-sm font-medium tracking-wide animate-pulse">
@@ -112,65 +105,66 @@ export default function HolographicHeroStage() {
       </div>
 
       {/* Main Content Overlay */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-6xl mx-auto">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         {/* Hero Title */}
-        <h1 className="font-display text-6xl md:text-8xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse">
+        <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent animate-pulse leading-tight">
           Experience Music
           <br />
           in the Metaverse
         </h1>
         
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-8 sm:mb-12 max-w-xs sm:max-w-lg md:max-w-2xl lg:max-w-3xl leading-relaxed px-2">
           Transform your event tickets into collectible gaming NFTs. Battle, trade, and evolve your digital concert memories in the ultimate Web3 entertainment platform.
         </p>
 
         {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-6 mb-16">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-8 sm:mb-16 w-full max-w-md sm:max-w-none">
           <Button 
             size="lg" 
-            className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-white font-semibold px-8 py-6 text-lg rounded-lg shadow-2xl shadow-primary/30 border border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-primary/50"
+            className="bg-gradient-to-r from-primary to-accent hover:from-primary/80 hover:to-accent/80 text-white font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-lg shadow-2xl shadow-primary/30 border border-primary/30 transition-all duration-300 hover:scale-105 hover:shadow-primary/50 w-full sm:w-auto"
           >
-            <Gamepad2 className="w-6 h-6 mr-3" />
+            <Gamepad2 className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
             Enter the Arena
           </Button>
           
           <Button 
             variant="outline" 
             size="lg" 
-            className="bg-surface/20 backdrop-blur-md border-2 border-secondary/50 text-secondary hover:bg-secondary/10 font-semibold px-8 py-6 text-lg rounded-lg shadow-xl shadow-secondary/20 transition-all duration-300 hover:scale-105 hover:border-secondary hover:shadow-secondary/40"
+            className="bg-surface/20 backdrop-blur-md border-2 border-secondary/50 text-secondary hover:bg-secondary/10 font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg rounded-lg shadow-xl shadow-secondary/20 transition-all duration-300 hover:scale-105 hover:border-secondary hover:shadow-secondary/40 w-full sm:w-auto"
           >
-            <Wallet className="w-6 h-6 mr-3" />
+            <Wallet className="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" />
             Connect Wallet
           </Button>
         </div>
 
         {/* Feature Icons */}
-        <div className="flex items-center justify-center gap-8 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 mb-6 sm:mb-8 w-full max-w-xs sm:max-w-none">
           {[
             { icon: Headphones, label: "Immersive Audio", color: "text-primary" },
             { icon: Zap, label: "Lightning Fast", color: "text-secondary" },
             { icon: Users, label: "Community Driven", color: "text-accent" }
           ].map((feature, i) => (
-            <Card key={i} className="bg-surface/10 backdrop-blur-md border border-muted/30 p-4 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20">
-              <feature.icon className={`w-8 h-8 ${feature.color} mx-auto mb-2`} />
-              <p className="text-sm text-muted-foreground font-medium">{feature.label}</p>
+            <Card key={i} className="bg-surface/10 backdrop-blur-md border border-muted/30 p-3 sm:p-4 hover:border-primary/50 transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20">
+              <feature.icon className={`w-6 h-6 sm:w-8 sm:h-8 ${feature.color} mx-auto mb-2`} />
+              <p className="text-xs sm:text-sm text-muted-foreground font-medium text-center">{feature.label}</p>
             </Card>
           ))}
         </div>
       </div>
 
       {/* Floating Sound Trigger Buttons */}
-      <div className="absolute top-8 right-8 space-y-4">
+      <div className="absolute top-4 sm:top-8 right-4 sm:right-8 space-y-2 sm:space-y-4">
         {["Crowd", "Bass", "Synth"].map((sound, i) => (
           <Button
             key={sound}
             variant="ghost"
             size="sm"
-            className="bg-surface/10 backdrop-blur-md border border-muted/30 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300"
+            className="bg-surface/10 backdrop-blur-md border border-muted/30 text-muted-foreground hover:text-primary hover:border-primary/50 transition-all duration-300 text-xs sm:text-sm px-2 sm:px-3 py-1 sm:py-2"
           >
-            <Music className="w-4 h-4 mr-2" />
-            {sound}
+            <Music className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+            <span className="hidden sm:inline">{sound}</span>
+            <span className="sm:hidden">{sound.charAt(0)}</span>
           </Button>
         ))}
       </div>

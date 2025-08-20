@@ -6,6 +6,8 @@ import NFTTicketWallet from "@/components/web3-ticketing/nft-ticket-wallet"
 import BattleArenaRivalry from "@/components/web3-ticketing/battle-arena-rivalry"
 import HolographicVaultRewards from "@/components/web3-ticketing/holographic-vault-rewards"
 import FloatingNavigationHub from "@/components/web3-ticketing/floating-navigation-hub"
+import LeaderboardRankings from "@/components/web3-ticketing/leaderboard-rankings"
+import SocialHub from "@/components/web3-ticketing/social-hub"
 import { useState } from "react"
 
 export default function HomePage() {
@@ -53,13 +55,19 @@ export default function HomePage() {
         return <BattleArenaRivalry />
       case "rewards":
         return <HolographicVaultRewards />
+      case "marketplace":
+        return <NFTTicketWallet /> // Using wallet as marketplace for now
+      case "leaderboard":
+        return <LeaderboardRankings />
+      case "social":
+        return <SocialHub />
       default:
         return <HolographicHeroStage />
     }
   }
 
   return (
-    <div className="relative min-h-screen bg-background">
+    <div className="relative min-h-screen bg-background overflow-x-hidden">
       {renderCurrentSection()}
       
       <FloatingNavigationHub

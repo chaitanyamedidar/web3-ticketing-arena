@@ -123,12 +123,12 @@ export default function FloatingNavigationHub({
         y: isVisible ? 0 : -20 
       }}
       transition={{ duration: 0.3 }}
-      className={`fixed top-4 right-4 z-50 ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
+      className={`fixed top-2 sm:top-4 right-2 sm:right-4 z-50 ${isVisible ? 'pointer-events-auto' : 'pointer-events-none'}`}
     >
       <motion.div
         animate={{ 
-          width: isExpanded ? 'auto' : '80px',
-          minWidth: isExpanded ? '320px' : '80px'
+          width: isExpanded ? 'auto' : '60px',
+          minWidth: isExpanded ? '280px' : '60px'
         }}
         transition={{ duration: 0.4, ease: [0.4, 0.0, 0.2, 1] }}
         className="relative"
@@ -136,7 +136,7 @@ export default function FloatingNavigationHub({
         onMouseLeave={() => setIsExpanded(false)}
       >
         {/* Main Panel */}
-        <div className="bg-surface/80 backdrop-blur-xl border border-border/50 rounded-2xl p-4 shadow-2xl relative overflow-hidden">
+        <div className="bg-surface/80 backdrop-blur-xl border border-border/50 rounded-xl sm:rounded-2xl p-2 sm:p-4 shadow-2xl relative overflow-hidden">
           {/* Holographic Border Effect */}
           <div className={`absolute inset-0 bg-gradient-to-r ${getFactionColor(user.faction)} opacity-20 rounded-2xl`} />
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-pulse rounded-2xl" />

@@ -95,6 +95,174 @@ const mockTickets: NFTTicket[] = [
     isEvolved: false,
     image: "/api/placeholder/300/400",
     qrCode: "QR456789123"
+  },
+  {
+    id: "4",
+    name: "Holographic Melody",
+    event: "Aurora Festival 2024",
+    date: "2024-04-12",
+    rarity: "legendary",
+    value: 3.2,
+    xp: 920,
+    maxXp: 1000,
+    battleStats: { attack: 98, defense: 85, special: 97 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR111222333"
+  },
+  {
+    id: "5",
+    name: "Cyber Punk Pass",
+    event: "Neon Underground",
+    date: "2024-02-05",
+    rarity: "rare",
+    value: 1.6,
+    xp: 580,
+    maxXp: 800,
+    battleStats: { attack: 72, defense: 88, special: 65 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR444555666"
+  },
+  {
+    id: "6",
+    name: "Digital Disco Entry",
+    event: "Retro Wave Night",
+    date: "2024-01-28",
+    rarity: "common",
+    value: 0.6,
+    xp: 240,
+    maxXp: 500,
+    battleStats: { attack: 38, defense: 45, special: 42 },
+    isEvolved: false,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR777888999"
+  },
+  {
+    id: "7",
+    name: "Quantum Stage VIP",
+    event: "Metaverse Music Fest",
+    date: "2024-05-18",
+    rarity: "legendary",
+    value: 4.1,
+    xp: 950,
+    maxXp: 1000,
+    battleStats: { attack: 99, defense: 92, special: 95 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR000111222"
+  },
+  {
+    id: "8",
+    name: "Synthwave Starter",
+    event: "Electric Euphoria",
+    date: "2024-03-08",
+    rarity: "common",
+    value: 0.4,
+    xp: 180,
+    maxXp: 500,
+    battleStats: { attack: 35, defense: 40, special: 30 },
+    isEvolved: false,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR333444555"
+  },
+  {
+    id: "9",
+    name: "Laser Light Exclusive",
+    event: "Prism Paradise",
+    date: "2024-03-22",
+    rarity: "rare",
+    value: 2.1,
+    xp: 720,
+    maxXp: 800,
+    battleStats: { attack: 85, defense: 75, special: 88 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR666777888"
+  },
+  {
+    id: "10",
+    name: "Virtual Reality Zone",
+    event: "Digital Dimensions",
+    date: "2024-04-05",
+    rarity: "rare",
+    value: 1.9,
+    xp: 690,
+    maxXp: 800,
+    battleStats: { attack: 80, defense: 78, special: 82 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR999000111"
+  },
+  {
+    id: "11",
+    name: "Glitch Festival Pass",
+    event: "Error 404 Concert",
+    date: "2024-02-14",
+    rarity: "common",
+    value: 0.7,
+    xp: 350,
+    maxXp: 500,
+    battleStats: { attack: 48, defense: 55, special: 45 },
+    isEvolved: false,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR222333444"
+  },
+  {
+    id: "12",
+    name: "Cosmic DJ Booth",
+    event: "Galactic Groove",
+    date: "2024-05-10",
+    rarity: "legendary",
+    value: 3.8,
+    xp: 980,
+    maxXp: 1000,
+    battleStats: { attack: 96, defense: 89, special: 98 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR555666777"
+  },
+  {
+    id: "13",
+    name: "Pixel Beat Access",
+    event: "8-Bit Rave",
+    date: "2024-01-15",
+    rarity: "common",
+    value: 0.5,
+    xp: 200,
+    maxXp: 500,
+    battleStats: { attack: 40, defense: 38, special: 35 },
+    isEvolved: false,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR888999000"
+  },
+  {
+    id: "14",
+    name: "Neural Network VIP",
+    event: "AI Symphony",
+    date: "2024-04-28",
+    rarity: "rare",
+    value: 2.3,
+    xp: 760,
+    maxXp: 800,
+    battleStats: { attack: 87, defense: 83, special: 90 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR111000999"
+  },
+  {
+    id: "15",
+    name: "Techno Temple Entry",
+    event: "Sacred Circuits",
+    date: "2024-03-30",
+    rarity: "rare",
+    value: 1.7,
+    xp: 620,
+    maxXp: 800,
+    battleStats: { attack: 75, defense: 80, special: 70 },
+    isEvolved: true,
+    image: "/api/placeholder/300/400",
+    qrCode: "QR444333222"
   }
 ]
 
@@ -157,7 +325,7 @@ function TicketCard3D({ ticket, onSelect, isSelected }: {
   return (
     <div
       ref={containerRef}
-      className="relative w-72 h-96 cursor-pointer perspective-1000"
+      className="relative w-full max-w-72 h-80 sm:h-96 cursor-pointer perspective-1000 mx-auto"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onMouseEnter={handleMouseEnter}
@@ -358,8 +526,8 @@ export default function NFTTicketWallet() {
   })
 
   return (
-    <div className="min-h-screen bg-background p-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="min-h-screen bg-background p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
         {/* Header Stats Panel */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -367,31 +535,31 @@ export default function NFTTicketWallet() {
           className="relative"
         >
           <Card className="bg-surface/50 backdrop-blur-xl border-primary/20">
-            <CardContent className="p-8">
-              <div className="flex items-center justify-between mb-6">
+            <CardContent className="p-4 sm:p-6 lg:p-8">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-4 sm:gap-0">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                    <Wallet className="w-6 h-6 text-white" />
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center">
+                    <Wallet className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                   </div>
                   <div>
-                    <h1 className="text-3xl font-bold text-white">NFT Ticket Wallet</h1>
-                    <p className="text-muted-foreground">Manage your evolved collectibles</p>
+                    <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white">NFT Ticket Wallet</h1>
+                    <p className="text-sm sm:text-base text-muted-foreground">Manage your evolved collectibles</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <Button variant="outline" size="sm">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto">
                     <Filter className="w-4 h-4 mr-2" />
                     Filter
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button variant="outline" size="sm" className="w-full sm:w-auto">
                     <ArrowUpDown className="w-4 h-4 mr-2" />
                     Sort
                   </Button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+              <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Coins className="w-4 h-4" />
@@ -443,23 +611,26 @@ export default function NFTTicketWallet() {
 
         {/* Tabbed Interface */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
-          <TabsList className="grid w-full grid-cols-3 bg-surface/50 backdrop-blur-xl border-primary/20">
-            <TabsTrigger value="active" className="data-[state=active]:bg-primary/20">
-              <Wallet className="w-4 h-4 mr-2" />
-              Active Tickets
+          <TabsList className="grid w-full grid-cols-3 bg-surface/50 backdrop-blur-xl border-primary/20 h-auto">
+            <TabsTrigger value="active" className="data-[state=active]:bg-primary/20 flex-col sm:flex-row gap-1 sm:gap-2 py-2 sm:py-3 text-xs sm:text-sm">
+              <Wallet className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Active Tickets</span>
+              <span className="sm:hidden">Active</span>
             </TabsTrigger>
-            <TabsTrigger value="evolved" className="data-[state=active]:bg-primary/20">
-              <Sparkles className="w-4 h-4 mr-2" />
-              Evolved NFTs
+            <TabsTrigger value="evolved" className="data-[state=active]:bg-primary/20 flex-col sm:flex-row gap-1 sm:gap-2 py-2 sm:py-3 text-xs sm:text-sm">
+              <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Evolved NFTs</span>
+              <span className="sm:hidden">Evolved</span>
             </TabsTrigger>
-            <TabsTrigger value="battle" className="data-[state=active]:bg-primary/20">
-              <Swords className="w-4 h-4 mr-2" />
-              Battle Cards
+            <TabsTrigger value="battle" className="data-[state=active]:bg-primary/20 flex-col sm:flex-row gap-1 sm:gap-2 py-2 sm:py-3 text-xs sm:text-sm">
+              <Swords className="w-3 h-3 sm:w-4 sm:h-4" />
+              <span className="hidden sm:inline">Battle Cards</span>
+              <span className="sm:hidden">Battle</span>
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value="active" className="space-y-6">
-            <div className="flex flex-wrap gap-8 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
               {filteredTickets.map((ticket, index) => (
                 <motion.div
                   key={ticket.id}
@@ -478,7 +649,7 @@ export default function NFTTicketWallet() {
           </TabsContent>
 
           <TabsContent value="evolved" className="space-y-6">
-            <div className="flex flex-wrap gap-8 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
               {filteredTickets.map((ticket, index) => (
                 <motion.div
                   key={ticket.id}
@@ -497,7 +668,7 @@ export default function NFTTicketWallet() {
           </TabsContent>
 
           <TabsContent value="battle" className="space-y-6">
-            <div className="flex flex-wrap gap-8 justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
               {filteredTickets.map((ticket, index) => (
                 <motion.div
                   key={ticket.id}

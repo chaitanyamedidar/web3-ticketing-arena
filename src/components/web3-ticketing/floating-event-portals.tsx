@@ -213,7 +213,7 @@ export default function FloatingEventPortals() {
       </div>
 
       <div ref={containerRef} className="relative z-10">
-        <div className="container mx-auto px-4 py-24">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-24">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -275,7 +275,7 @@ export default function FloatingEventPortals() {
           </motion.div>
 
           {/* Event Portal Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12 lg:mb-16">
             {filteredEvents.map((event, index) => {
               const rarity = rarityConfig[event.rarity]
               const RarityIcon = rarity.icon
